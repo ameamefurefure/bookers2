@@ -7,28 +7,28 @@
     <div class="row">
       <div class="col-md-3">
         <h2>User info</h2>
-        <%= image_tag @user.get_profile_image(100,100) %>
+        <%= image_tag list.image, size:"100,100" %>
         <table class="table">
           <tr></tr>
           <tr>
             <th>name</th>
-            <th><%= @user.name %></th>
+            <!--<th><％= @user.name %></th>-->
           </tr>
           <tr>
             <th>introduction</th>
-            <th><%= @user.introduction %></th>
+            <!--<th><％= @user.introduction %></th>-->
           </tr>
         </table>
       </div>
       
       <h2>New book</h2>
-      <%= form_with model: Book.new do |f| %>
+      <%= form_with model: @book do |f| %>
         <div class="field">
-          <h4>Title</h4>
+          <h6>Title</h6>
           <%= f.text_field :title %>
         </div>
         <div class="field">
-          <h4>Opinion</h4>
+          <h6>Opinion</h6>
           <%= f.text_area :body %>
         </div>
         <div class="actions">
