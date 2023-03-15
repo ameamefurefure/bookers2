@@ -4,8 +4,9 @@ class UsersController < ApplicationController
   end
   
   def index
-    # @user = User.find(params[:id])
-    # @books = @user.books
+    @users = User.all
+    @books = Book.all
+    @book = Book.new # データ受取＆新規登録
   end
 
   def show

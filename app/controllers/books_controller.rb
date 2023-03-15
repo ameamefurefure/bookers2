@@ -5,10 +5,8 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params) # データ受取＆ストロングパラメータの確認
-    @book.user_id = current_user.id # 受け取ったデータに付随するuser_idはログインユーザーのID
+    @book.user_id = current_user.id # 受け取ったデータのuser_idカラムはログインユーザーのID
     @book.save # データベースに保存
-    # redirect_to '/books/#{book.id}'
-    # redirect_to book_path(@book.id)
     redirect_to book_path(@book.id)
   end
 
@@ -16,8 +14,6 @@ class BooksController < ApplicationController
     @user = current_user
     @books = Book.all
     @book = Book.new # データ受取＆新規登録
-    # @book.save # データベースに保存
-    # redirect_to root_path
   end
 
   def show
