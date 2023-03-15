@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   # get 'books/index'
   # get 'users/show'
   # get 'books/edit'
-  resources :books,only: [:index, :show, :edit]
+  resources :books,only: [:new, :create, :index, :show, :edit]
 end
