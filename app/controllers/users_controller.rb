@@ -2,11 +2,12 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-  
+
   def index
     @users = User.all
     @books = Book.all
     @book = Book.new # データ受取＆新規登録
+    @user = current_user
   end
 
   def show

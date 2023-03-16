@@ -1,14 +1,14 @@
 <h2>User info</h2>
-<!--<％％％％％　%= image_tag user.get_profile_image(100,100) %><!--部分テンプレートの為、@userの@除去-->-->
+<%= image_tag user.get_profile_image(100,100) %><!--部分テンプレートの為、@userの@除去-->
 <table class="table">
   <tr></tr>
   <tr>
     <th>name</th>
-    <!--<th><％％％％％　%= user.name %></th><!--部分テンプレートの為、@userの@除去-->-->
+    <th><%= user.name %></th><!--部分テンプレートの為、@userの@除去-->
   </tr>
   <tr>
     <th>introduction</th>
-    <!--<th><％％％％％　%= user.introduction %></th><!--部分テンプレートの為、@userの@除去-->-->
+    <th><%= user.introduction %></th><!--部分テンプレートの為、@userの@除去-->
   </tr>
 </table>
 
