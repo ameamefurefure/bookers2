@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
+    @books = Book.all
     # @books = @user.books.page(params[:page]) #ページネーションの為、こっちに変更?
   end
 
