@@ -17,12 +17,24 @@ class BooksController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def edit
     @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id]) #bookの取得
+    @book.update(book_params) #bookのアップデート
+    redirect_to book_path(@book.id) #bookの詳細ページへのパス
+  end
+  
+  def destroy
+    book = Book.find(params[:id])# 削除するbookレコードを取得
+    book.delete# book削除
+    redirect_to books_path# bookの一覧ページへのパス
   end
 
   private
