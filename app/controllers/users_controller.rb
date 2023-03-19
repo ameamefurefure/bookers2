@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def new
     @user = User.new
   end
-  
+
   def index
     @users = User.all
     @books = Book.all
@@ -12,14 +14,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = Book.all
+    @books = @user.books
     # @books = @user.books.page(params[:page]) #ページネーションの為、こっちに変更?
   end
 
   def edit
     @user = User.find(params[:id])
-    # @user.save
-    # redirect_to user_path(current_user.id)
   end
 
   def update
@@ -29,6 +29,13 @@ class UsersController < ApplicationController
       redirect_to user_path(@user.id) #ユーザーの詳細ページへのパス
     else
       render :edit
+    end
+  end
+
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user.id)
     end
   end
 
