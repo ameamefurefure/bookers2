@@ -4,6 +4,15 @@
 <main>
   <p id="notice"></p>
   <div class="container px-5 px-sm-0">
+    <% if @book.errors.any? %>
+      <%= @book.errors.count %>errors prohibited this obj from being saved:
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    
     <div class="row">
       <div class="col-md-3">
         <!--以下、共通化-->
@@ -44,7 +53,7 @@
 
         <!--共通化の呼び出し-->
         <!--render [部分テンプレートファイルの指定], [ローカル変数]:[渡す値] %>-->
-        <%= render 'list', user: @user %>
+        <%= render 'list', {user: @user}%>
       </div>
       <div class="col-md-8 offset-md-1">
         <h2>Books</h2>

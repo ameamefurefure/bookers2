@@ -1,14 +1,26 @@
 class BooksController < ApplicationController
-  # def new
-  #   @book = Book.new
-  # end
+  def new
+    @book = Book.new
+  end
 
+  # def create
+  #   @book = Book.new(book_params) # データ受取＆ストロングパラメータの確認
+  #   @book.user_id = current_user.id # 受け取ったデータのuser_idカラムはログインユーザーのID
+  #   @book.save # データベースに保存
+  #   redirect_to book_path(@book.id)
+  # end
   def create
     @book = Book.new(book_params) # データ受取＆ストロングパラメータの確認
     @book.user_id = current_user.id # 受け取ったデータのuser_idカラムはログインユーザーのID
-    @book.save # データベースに保存
-    redirect_to book_path(@book.id)
+    if @book.save # データベースに保存
+      redirect_to book_path(@book.id)
+    else
+      @user = current_user
+      @books = Book.all
+      render :index
+    end
   end
+  
 
   def index
     @user = current_user
@@ -27,8 +39,11 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id]) #bookの取得
-    @book.update(book_params) #bookのアップデート
-    redirect_to book_path(@book.id) #bookの詳細ページへのパス
+    if @book.update(book_params) #bookのアップデート
+      redirect_to book_path(@book.id) #bookの詳細ページへのパス
+    else
+      render :edit
+    end
   end
   
   def destroy

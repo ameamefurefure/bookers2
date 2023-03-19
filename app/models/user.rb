@@ -3,7 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+   # 1:Nの関係
+  has_many :books, dependent: :destroy
+  
   has_one_attached :profile_image
 
   def get_profile_image(width,height)
@@ -13,7 +15,4 @@ class User < ApplicationRecord
     end
       profile_image.variant(resize_to_limit: [width, height]).processed
   end
-
-  # 1:Nの関係
-  has_many :books, dependent: :destroy
 end
