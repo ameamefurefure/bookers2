@@ -24,7 +24,9 @@
           <% @books.each do |book| %><!--@books=Book.all(全て取得)の内容をbookに一つずつ当てはめてく-->
           <tr>
             <td>
-              <%= image_tag book.user.get_profile_image(100,100) %>　<!--「app2-17章参照」-->
+              <%= link_to user_path(book.user), class:"text-decoration-none" do %>
+                <%= image_tag book.user.get_profile_image(100,100) %>　<!--「app2-17章参照」-->
+              <% end %>
             </td>
             <td><%= link_to book.title, book_path(book.id) %></td><!--link_to 表示させる文字, URL-->
             <td><%= book.body %></td>

@@ -19,4 +19,5 @@ class User < ApplicationRecord
   #バリデーション（空白は×など）を設定
   validates :name, length: { minimum: 2, maximum: 20 } #nameの文字数は、2文字から20文字まで
   validates :introduction, length: { maximum: 50 } #introductionの文字数は、50文字まで
+  validates :name, uniqueness: true#同じものを登録しない
 end

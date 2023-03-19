@@ -14,7 +14,7 @@
         <table class="table">
           <tr>
             <td>
-              <%= link_to user_path(@book) do%><!--user(bookのuser_idと同じidの)へのリンク-->
+              <%= link_to user_path(@book.user) do%><!--user(bookのuser_idと同じidの)へのリンク-->
                 <%= image_tag @book.user.get_profile_image(100,100) %><!--「app2-17章参照」-->
                 <br><%= @user.name %>
               <% end%>
