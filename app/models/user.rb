@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
    # 1:Nの関係
   has_many :books, dependent: :destroy
-  
+
   has_one_attached :profile_image
 
   def get_profile_image(width,height)
@@ -15,4 +15,8 @@ class User < ApplicationRecord
     end
       profile_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  #バリデーション（空白は×など）を設定
+  validates :name, length: { minimum: 2, maximum: 20 } #nameの文字数は、2文字から20文字まで
+  validates :introduction, length: { maximum: 50 } #introductionの文字数は、50文字まで
 end

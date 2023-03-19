@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-
+  
   def index
     @users = User.all
     @books = Book.all
@@ -16,10 +16,6 @@ class UsersController < ApplicationController
     # @books = @user.books.page(params[:page]) #ページネーションの為、こっちに変更?
   end
 
-  # def user_params
-  #   params.require(:user).permit(:title, :body, :profile_image)
-  # end
-
   def edit
     @user = User.find(params[:id])
     # @user.save
@@ -27,9 +23,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id]) #ユーザーの取得
-    user.update(user_params) #ユーザーのアップデート
-    redirect_to user_path(user.id) #ユーザーの詳細ページへのパス
+    @user = User.find(params[:id]) #ユーザーの取得
+    if @user.update(user_params) #ユーザーのアップデート
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(@user.id) #ユーザーの詳細ページへのパス
+    else
+      render :edit
+    end
   end
 
   private
